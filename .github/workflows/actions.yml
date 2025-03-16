@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: self-hosted  # Self-hosted runner ka use karne ke liye update
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Clone the repository and navigate
+      run: |
+        git clone https://github.com/salmanjamil433/etms.git repo
+        cd repo
+
+    - name: Run Docker Compose
+      run: |
+        docker compose up -d --build
+        pwd
